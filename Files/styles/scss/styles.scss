@@ -1,4 +1,10 @@
-@import './reset';
+@import 'reset';
+@import 'variables';
+@import 'typography';
+@import 'basic-style';
+@import 'layout';
+@import 'navigation';
+@import 'buttons';
 
 h1 {
     color: blue;
