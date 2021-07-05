@@ -1,0 +1,1 @@
+window.onload = $(".desk").draggable({containment: "parent"});
