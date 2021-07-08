@@ -1,15 +1,15 @@
-let deskList = ["0", "1", "2", "3"];
-for (i = 1; i < deskList.length + 1; i++) {
-    console.log("desk"+ i);
-    let div = document.createElement("div");
-    let deskContainer = document.getElementById("deskContainer");
-    deskContainer.appendChild(div);
-    div.setAttribute("class", "desk");
-    div.setAttribute("id", "desk"+i);
-    makeDraggable(div);
+export function makeDraggable2() {
+  let deskList = ["0", "1", "2", "3", "4", "5", "6",];
+  for (let i = 1; i < deskList.length + 1; i++) {
+      let div = document.createElement("div");
+      let deskContainer = document.getElementById("deskContainer");
+      deskContainer.appendChild(div);
+      div.setAttribute("class", "desk");
+      div.setAttribute("id", "desk"+i);
+      makeDraggable(div);
+  }
 }
 function makeDraggable(desk) {
-    console.log(desk);
     let dragItem = desk;
     let container = document.querySelector(".desk-layout");
 

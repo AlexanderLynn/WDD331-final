@@ -1,28 +1,62 @@
-class Desk {
+//Desk object
+export default class Desk {
     constructor(deskNumber) {
         this.deskNumber = deskNumber;
+        this.position = [0,0];
     }
     getDeskNumber() {
-        return this.deskNumber();
+        return this.deskNumber;
+    }
+    getDeskPosition() {
+        return this.position;
     }
 }
 
-function getNextDesk() {
-    return 11;
+
+//Appends new desk object to arrau of desks in local storage
+export function addDesk(desk) {
+    //Checks if local storage already exists; Initializes if not
+    let deskList;
+    if (getDesks() === null || typeof getDesks() === 'undefined')
+        deskList = [];
+    else
+        deskList = getDesks();
+    
+    //Adds desk to array
+    deskList.push(desk);
+    storeDesks(deskList);
 }
 
-function addDesk() {
-    let nextDesk = "desk" + getNextDesk();
-    let desk = new Desk(nextDesk);
-    console.log(desk);
-    setDesktoStorage(desk);
+//Removes a desk from array of desks in local storage
+export function removeDesk(desk) {
+    
 }
 
-function getDeskStorage() {
-    console.log(localStorage.getItem("desk"));
+//Gets array of desk objects from local storage
+export function getDesks() {
+    try {
+        console.log("tried");
+        console.log(JSON.parse(localStorage.getItem("desks")));
+        return JSON.parse(localStorage.getItem("desks"));
+    }
+    catch {
+        console.log("caught");
+        console.log(localStorage.getItem("desks"));
+        return localStorage.getItem("desks");
+    }
+    
 }
 
-function setDesktoStorage(desk) {
-    toStore = JSON.stringify(desk);
-    localStorage.setItem("desk", toStore);
+//Stores array of desk objects to local storage
+export function storeDesks(deskList) {
+    localStorage.setItem("desks", JSON.stringify(deskList));
+    getDesks();
+}
+
+
+
+//Testing
+export function clearStorage() {
+    let blank = [];
+    localStorage.setItem("desks", blank);
 }
