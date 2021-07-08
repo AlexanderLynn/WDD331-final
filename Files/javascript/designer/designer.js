@@ -1,67 +1,28 @@
 class Desk {
-    makeDraggable() {
-        var dragItem = document.querySelector("#desk1");
-        var container = document.querySelector(".desk-layout");
-    
-        var active = false;
-        var currentX;
-        var currentY;
-        var initialX;
-        var initialY;
-        var xOffset = 0;
-        var yOffset = 0;
-    
-        container.addEventListener("touchstart", dragStart, false);
-        container.addEventListener("touchend", dragEnd, false);
-        container.addEventListener("touchmove", drag, false);
-    
-        container.addEventListener("mousedown", dragStart, false);
-        container.addEventListener("mouseup", dragEnd, false);
-        container.addEventListener("mousemove", drag, false);
-    
-        function dragStart(e) {
-          if (e.type === "touchstart") {
-            initialX = e.touches[0].clientX - xOffset;
-            initialY = e.touches[0].clientY - yOffset;
-          } else {
-            initialX = e.clientX - xOffset;
-            initialY = e.clientY - yOffset;
-          }
-    
-          if (e.target === dragItem) {
-            active = true;
-          }
-        }
-    
-        function dragEnd(e) {
-          initialX = currentX;
-          initialY = currentY;
-    
-          active = false;
-        }
-    
-        function drag(e) {
-          if (active) {
-          
-            e.preventDefault();
-          
-            if (e.type === "touchmove") {
-              currentX = e.touches[0].clientX - initialX;
-              currentY = e.touches[0].clientY - initialY;
-            } else {
-              currentX = e.clientX - initialX;
-              currentY = e.clientY - initialY;
-            }
-    
-            xOffset = currentX;
-            yOffset = currentY;
-    
-            setTranslate(currentX, currentY, dragItem);
-          }
-        }
-    
-        function setTranslate(xPos, yPos, el) {
-          el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
-        }
+    constructor(deskNumber) {
+        this.deskNumber = deskNumber;
     }
+    getDeskNumber() {
+        return this.deskNumber();
+    }
+}
+
+function getNextDesk() {
+    return 11;
+}
+
+function addDesk() {
+    let nextDesk = "desk" + getNextDesk();
+    let desk = new Desk(nextDesk);
+    console.log(desk);
+    setDesktoStorage(desk);
+}
+
+function getDeskStorage() {
+    console.log(localStorage.getItem("desk"));
+}
+
+function setDesktoStorage(desk) {
+    toStore = JSON.stringify(desk);
+    localStorage.setItem("desk", toStore);
 }
