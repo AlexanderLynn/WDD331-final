@@ -16,8 +16,8 @@ function makeDraggable(desk) {
     let active = false;
     let currentX;
     let currentY;
-    let initialX;
-    let initialY;
+    let initX;
+    let initY;
     let xOffset = 0;
     let yOffset = 0;
 
@@ -29,13 +29,33 @@ function makeDraggable(desk) {
     container.addEventListener("mouseup", dragEnd, false);
     container.addEventListener("mousemove", drag, false);
 
+    function drag(e) {
+      if (active) {
+      
+        e.preventDefault();
+      
+        if (e.type === "touchmove") {
+          currentX = e.touches[0].clientX - initX;
+          currentY = e.touches[0].clientY - initY;
+        } else {
+          currentX = e.clientX - initX;
+          currentY = e.clientY - initY;
+        }
+
+        xOffset = currentX;
+        yOffset = currentY;
+
+        setTranslate(currentX, currentY, dragItem);
+      }
+    }
+
     function dragStart(e) {
       if (e.type === "touchstart") {
-        initialX = e.touches[0].clientX - xOffset;
-        initialY = e.touches[0].clientY - yOffset;
+        initX = e.touches[0].clientX - xOffset;
+        initY = e.touches[0].clientY - yOffset;
       } else {
-        initialX = e.clientX - xOffset;
-        initialY = e.clientY - yOffset;
+        initX = e.clientX - xOffset;
+        initY = e.clientY - yOffset;
       }
 
       if (e.target === dragItem) {
@@ -44,30 +64,10 @@ function makeDraggable(desk) {
     }
 
     function dragEnd(e) {
-      initialX = currentX;
-      initialY = currentY;
+      initX = currentX;
+      initY = currentY;
 
       active = false;
-    }
-
-    function drag(e) {
-      if (active) {
-      
-        e.preventDefault();
-      
-        if (e.type === "touchmove") {
-          currentX = e.touches[0].clientX - initialX;
-          currentY = e.touches[0].clientY - initialY;
-        } else {
-          currentX = e.clientX - initialX;
-          currentY = e.clientY - initialY;
-        }
-
-        xOffset = currentX;
-        yOffset = currentY;
-
-        setTranslate(currentX, currentY, dragItem);
-      }
     }
 
     function setTranslate(xPos, yPos, el) {

@@ -6,5 +6,6 @@ let desk1 = new Desk(101);
 
 makeDraggable2();
 
+//Button Handlers
 document.getElementById("add-desk").addEventListener("click", () => (addDesk(desk1)));
 document.getElementById("get-desks").addEventListener("click", () => getDesks());
