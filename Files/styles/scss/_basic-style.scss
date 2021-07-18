@@ -8,6 +8,7 @@
     overflow: hidden;
     border-radius: 7px;
     touch-action: none;
+    position: relative;
 }
 .desk {
     width: 50px;
@@ -19,4 +20,5 @@
     touch-action: none;
     user-select: none;
     text-align: center;
+    position: absolute;
 }

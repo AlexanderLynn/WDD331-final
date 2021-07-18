@@ -1,3 +1,4 @@
+/*
 export function makeDraggable2() {
   let deskList = ["0", "1", "2", "3", "4", "5", "6",];
   for (let i = 1; i < deskList.length + 1; i++) {
@@ -9,6 +10,9 @@ export function makeDraggable2() {
       makeDraggable(div);
   }
 }
+*/
+
+/*
 function makeDraggable(desk) {
     let dragItem = desk;
     let container = document.querySelector(".desk-layout");
@@ -74,3 +78,4 @@ function makeDraggable(desk) {
       el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
     }
 }
+*/

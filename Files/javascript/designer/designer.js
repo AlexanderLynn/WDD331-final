@@ -13,8 +13,9 @@ export default class Desk {
 }
 
 
-//Appends new desk object to arrau of desks in local storage
-export function addDesk(desk) {
+//Appends new desk object to array of desks in local storage
+export function addDesk() {
+    let desk = new Desk();
     //Checks if local storage already exists; Initializes if not
     let deskList;
     if (getDesks() === null || typeof getDesks() === 'undefined')
@@ -49,10 +50,14 @@ export function getDesks() {
 
 //Stores array of desk objects to local storage
 export function storeDesks(deskList) {
+    for (let i = 0; i < deskList.length; i++)
+    {
+        
+    }
+    console.log(document.getElementsByClassName("desk"))
     localStorage.setItem("desks", JSON.stringify(deskList));
-    getDesks();
+    //getDesks();
 }
-
 
 
 //Testing
