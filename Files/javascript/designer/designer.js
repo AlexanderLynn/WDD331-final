@@ -15,7 +15,8 @@ export default class Desk {
 
 //Appends new desk object to array of desks in local storage
 export function addDesk() {
-    let desk = new Desk();
+    //Sets new desk number to deskcount + 1
+    let desk = new Desk(getDesks().length + 1);
     //Checks if local storage already exists; Initializes if not
     let deskList;
     if (getDesks() === null || typeof getDesks() === 'undefined')
@@ -25,8 +26,8 @@ export function addDesk() {
     
     //Adds desk to array
     deskList.push(desk);
-    storeDesks(deskList);
-    saveDeskPosition();
+    saveDeskPosition(deskList);
+    //storeDesks(deskList);
 }
 
 //Removes a desk from array of desks in local storage
@@ -55,21 +56,22 @@ export function storeDesks(deskList) {
     //getDesks();
 }
 
-function saveDeskPosition() {
+function saveDeskPosition(deskList) {
     let currentDesks = document.getElementsByClassName("desk");
-    let storedDesks = getDesks();
-    console.log("positions saved");
-    console.log(storedDesks);
-    for (let i = 0; i < currentDesks.length; i++)
+    let storedDesks = deskList;
+    for (let i = 1; i < currentDesks.length + 1; i++)
     {
         let desk = document.getElementById("desk"+i);
-        console.log(desk);
+        console.log(desk.style.left + ", " + desk.style.top);
+        storedDesks[i-1].position[0] = desk.style.left;
+        storedDesks[i-1].position[1] = desk.style.top;
     }
+    storeDesks(storedDesks);
 }
 
 //Testing
 export function clearStorage() {
-    let blank = [{"deskNumber":0,"position":[0,0]}];
+    let blank = [{"deskNumber":1,"position":[0,0]}];
     localStorage.setItem("desks", JSON.stringify(blank));
 }
 

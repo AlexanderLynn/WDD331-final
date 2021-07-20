@@ -1,20 +1,26 @@
 
 export function drawDesks(deskList) {
+    //clears view and draws desks
     clearView();
     for (let i = 1; i < deskList.length + 1; i++) {
-        drawDesk(i);
+        drawDesk(deskList, i);
     }
 }
 
-function drawDesk(i) {
-        let div = document.createElement("div");
-        let deskContainer = document.getElementById("deskContainer");
-        deskContainer.appendChild(div);
-        div.setAttribute("class", "desk");
-        div.setAttribute("id", "desk"+i);
-        div.style.zIndex = 10 + i;
-        //makeDraggable(div);
-        window.onload = $(".desk").draggable({containment: "parent"});
+function drawDesk(deskList, i) {
+    //creates desk div with class and id
+    let div = document.createElement("div");
+    let deskContainer = document.getElementById("deskContainer");
+    deskContainer.appendChild(div);
+    div.setAttribute("class", "desk");
+    div.setAttribute("id", "desk"+i);
+    //assigns z-index and previous position
+    div.style.zIndex = 10 + i;
+    div.style.left = deskList[i-1].position[0];
+    div.style.top = deskList[i-1].position[1];
+    //makeDraggable(div);
+    //makes item draggable with JQuery
+    window.onload = $(".desk").draggable({containment: "parent"});
 }
 
 function clearView() {
