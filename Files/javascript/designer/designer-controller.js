@@ -4,12 +4,15 @@ import Desk from './designer.js';
 import { addDesk, getDesks, storeDesks, clearStorage } from './designer.js';
 
 
-
-// Just for testing
+//initial draw
+drawDesks(getDesks());
+// Just for testing old dragging method
 //makeDraggable2();
 
+
+
 //Button Handlers
-document.getElementById("add-desk").addEventListener("click", () => addDesk());
+document.getElementById("add-desk").addEventListener("click", () => {addDesk();  drawDesks(getDesks());});
 document.getElementById("get-desks").addEventListener("click", () => getDesks());
-drawDesks(getDesks());
-console.log(getDesks());
+document.getElementById("clear-storage").addEventListener("click", () => {clearStorage(); drawDesks(getDesks());});
+

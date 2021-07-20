@@ -26,6 +26,7 @@ export function addDesk() {
     //Adds desk to array
     deskList.push(desk);
     storeDesks(deskList);
+    saveDeskPosition();
 }
 
 //Removes a desk from array of desks in local storage
@@ -37,12 +38,12 @@ export function removeDesk(desk) {
 export function getDesks() {
     try {
         console.log("tried");
+        console.log("current storage:");
         console.log(JSON.parse(localStorage.getItem("desks")));
         return JSON.parse(localStorage.getItem("desks"));
     }
     catch {
         console.log("caught");
-        console.log(localStorage.getItem("desks"));
         return localStorage.getItem("desks");
     }
     
@@ -50,18 +51,28 @@ export function getDesks() {
 
 //Stores array of desk objects to local storage
 export function storeDesks(deskList) {
-    for (let i = 0; i < deskList.length; i++)
-    {
-        
-    }
-    console.log(document.getElementsByClassName("desk"))
     localStorage.setItem("desks", JSON.stringify(deskList));
     //getDesks();
 }
 
+function saveDeskPosition() {
+    let currentDesks = document.getElementsByClassName("desk");
+    let storedDesks = getDesks();
+    console.log("positions saved");
+    console.log(storedDesks);
+    for (let i = 0; i < currentDesks.length; i++)
+    {
+        let desk = document.getElementById("desk"+i);
+        console.log(desk);
+    }
+}
 
 //Testing
 export function clearStorage() {
-    let blank = [];
-    localStorage.setItem("desks", blank);
+    let blank = [{"deskNumber":0,"position":[0,0]}];
+    localStorage.setItem("desks", JSON.stringify(blank));
 }
+
+/* Sample Desk Storage
+[{"deskNumber":0,"position":[0,0]},{"position":[0,0]},{"position":[0,0]}]
+*/
