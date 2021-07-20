@@ -85,7 +85,29 @@ table {
       -ms-user-select: none;
           user-select: none;
   text-align: center;
+  font-size: 3rem;
   position: absolute;
+}
+
+.desk a, .desk a:active {
+  text-decoration: none;
+  color: black;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+}
+
+.desk-remover {
+  font-size: .6em;
+  content: "X";
+  position: relative;
+  background-color: #E86E58;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.desk:target {
+  background-color: #1BB28C;
 }
 
 h1 {

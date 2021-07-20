@@ -1,8 +1,8 @@
 //Desk object
 export default class Desk {
-    constructor(deskNumber) {
+    constructor(deskNumber, position = [0,0]) {
         this.deskNumber = deskNumber;
-        this.position = [0,0];
+        this.position = position;
     }
     getDeskNumber() {
         return this.deskNumber;
@@ -16,7 +16,9 @@ export default class Desk {
 //Appends new desk object to array of desks in local storage
 export function addDesk() {
     //Sets new desk number to deskcount + 1
-    let desk = new Desk(getDesks().length + 1);
+    let halfWidth = document.getElementById("deskContainer").clientWidth / 2;
+    let halfHeight = document.getElementById("deskContainer").clientHeight / 2;
+    let desk = new Desk(getDesks().length + 1, [halfWidth, halfHeight]);
     //Checks if local storage already exists; Initializes if not
     let deskList;
     if (getDesks() === null || typeof getDesks() === 'undefined')
@@ -27,7 +29,6 @@ export function addDesk() {
     //Adds desk to array
     deskList.push(desk);
     saveDeskPosition(deskList);
-    //storeDesks(deskList);
 }
 
 //Removes a desk from array of desks in local storage
@@ -56,13 +57,14 @@ export function storeDesks(deskList) {
     //getDesks();
 }
 
-function saveDeskPosition(deskList) {
+export function saveDeskPosition(deskList) {
     let currentDesks = document.getElementsByClassName("desk");
     let storedDesks = deskList;
+    //logs current position for each desk
     for (let i = 1; i < currentDesks.length + 1; i++)
     {
         let desk = document.getElementById("desk"+i);
-        console.log(desk.style.left + ", " + desk.style.top);
+        //console.log(desk.style.left + ", " + desk.style.top);
         storedDesks[i-1].position[0] = desk.style.left;
         storedDesks[i-1].position[1] = desk.style.top;
     }
@@ -71,7 +73,9 @@ function saveDeskPosition(deskList) {
 
 //Testing
 export function clearStorage() {
-    let blank = [{"deskNumber":1,"position":[0,0]}];
+    let halfWidth = document.getElementById("deskContainer").clientWidth / 2;
+    let halfHeight = document.getElementById("deskContainer").clientHeight / 2;
+    let blank = [{"deskNumber":1,"position":[halfWidth,halfHeight]}];
     localStorage.setItem("desks", JSON.stringify(blank));
 }
 

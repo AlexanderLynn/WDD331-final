@@ -14,13 +14,15 @@ function drawDesk(deskList, i) {
     deskContainer.appendChild(div);
     div.setAttribute("class", "desk");
     div.setAttribute("id", "desk"+i);
+    div.innerHTML = "<a href='#desk"+i+"'>"+i+"</a>";
     //assigns z-index and previous position
     div.style.zIndex = 10 + i;
     div.style.left = deskList[i-1].position[0];
     div.style.top = deskList[i-1].position[1];
     //makeDraggable(div);
     //makes item draggable with JQuery
-    window.onload = $(".desk").draggable({containment: "parent"});
+    if(document.getElementById("deskContainer").classList.contains("designing"))
+        $(".desk").draggable({containment: "parent"});
 }
 
 function clearView() {
