@@ -1,6 +1,8 @@
 
+
+
 export function drawDesks(deskList) {
-    for (let i = 1; i < deskList.length + 1; i++) {
+    for (let i = 0; i < deskList.length; i++) {
         drawDesk(i);
     }
 }
@@ -12,10 +14,12 @@ function drawDesk(i) {
         div.setAttribute("class", "desk");
         div.setAttribute("id", "desk"+i);
         div.style.zIndex = 10 + i;
-        makeDraggable(div);
+        //makeDraggable(div);
+        window.onload = $(".desk").draggable({containment: "parent"});
 }
 
-
+//Legacy Dragging
+/*
 function makeDraggable(desk) {
     let dragItem = desk;
     let container = document.querySelector(".desk-layout");
@@ -81,3 +85,4 @@ function makeDraggable(desk) {
       el.style.transform = "translate3d(" + xPos + "px, " + yPos + "px, 0)";
     }
 }
+*/
