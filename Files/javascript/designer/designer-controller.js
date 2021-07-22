@@ -5,7 +5,14 @@ import Desk, { addDesk, getDesks, saveDeskPosition, clearStorage, reserveDesk } 
 
 
 //initial draw
-drawDesks(getDesks());
+try {
+    drawDesks(getDesks());
+}
+catch {
+    console.log("Initialized first startup")
+    clearStorage();
+    drawDesks(getDesks());
+}
 // Just for testing old dragging method
 //makeDraggable2();
 
