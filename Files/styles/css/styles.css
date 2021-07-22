@@ -206,6 +206,10 @@ p, a, label, input, button {
   background-color: #1BB28C;
 }
 
+.page-wrapper a {
+  color: black;
+}
+
 .page-wrapper {
   margin: 3rem;
   overflow: auto;

@@ -89,7 +89,7 @@ export function reserveDesk() {
         let justDesk = desk.substring(numPos, numLength);
         //updates reservation and saves to storage
         try {
-            if (deskList[parseInt(justDesk.slice(4))-1].reservationName == "" || !document.getElementById("reservers-name").value) {
+            if (deskList[parseInt(justDesk.slice(4))-1].reservationName == "" || deskList[parseInt(justDesk.slice(4))-1].reservationName != document.getElementById("reservers-name").value) {
                 deskList[parseInt(justDesk.slice(4))-1].reservationName = document.getElementById("reservers-name").value;
                 deskList[parseInt(justDesk.slice(4))-1].reserved = 1;
                 confirm("Now reserved for: " + document.getElementById("reservers-name").value)
