@@ -69,6 +69,9 @@
 .reservation-menu {
     display: flex;
     flex-flow: row;
+    & > * {
+        margin: 1rem;
+    }
 }
 
 .reservation-menu div {

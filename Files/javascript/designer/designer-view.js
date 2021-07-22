@@ -5,8 +5,10 @@ export function drawDesks(deskList) {
     for (let i = 1; i < deskList.length + 1; i++) {
         drawDesk(deskList, i);
     }
-    if (!document.getElementById("reservation-menu").classList.contains("hidden"))
-        displayReservation(deskList)
+    if (!document.getElementById("reservation-menu").classList.contains("hidden")) {
+        clearReservedDisplay();
+        displayReservation(deskList);
+    }
     //getPhoto();
 }
 
@@ -36,6 +38,13 @@ function drawDesk(deskList, i) {
 
 function clearView() {
     let container = document.getElementById("deskContainer");
+    while (container.lastChild) {
+        container.removeChild(container.lastChild);
+    }
+}
+
+function clearReservedDisplay() {
+    let container = document.getElementById("reservedDesksList");
     while (container.lastChild) {
         container.removeChild(container.lastChild);
     }

@@ -158,6 +158,10 @@ p, a, label, input, button {
           flex-flow: row;
 }
 
+.reservation-menu > * {
+  margin: 1rem;
+}
+
 .reservation-menu div {
   display: -webkit-box;
   display: -ms-flexbox;

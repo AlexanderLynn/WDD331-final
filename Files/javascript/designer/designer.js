@@ -81,11 +81,29 @@ export function clearStorage() {
 }
 
 export function reserveDesk() {
-    
-}
-//Testing
-export function test() {
-    console.log(document.activeElement.id);
+        //gets selected desk number
+        let deskList = getDesks();
+        let desk = (window.location.href).toString()
+        let numPos = desk.indexOf("desk");
+        let numLength = desk.length;
+        let justDesk = desk.substring(numPos, numLength);
+        //updates reservation and saves to storage
+        try {
+            if (deskList[parseInt(justDesk.slice(4))-1].reservationName == "" || !document.getElementById("reservers-name").value) {
+                deskList[parseInt(justDesk.slice(4))-1].reservationName = document.getElementById("reservers-name").value;
+                deskList[parseInt(justDesk.slice(4))-1].reserved = 1;
+                confirm("Now reserved for: " + document.getElementById("reservers-name").value)
+            }
+            else 
+                confirm("Already reserved for " + document.getElementById("reservers-name").value);
+        }
+        catch {
+            confirm("Please select a desk before reserving");
+        }
+        
+        
+        document.getElementById("reservers-name").value = "";
+        storeDesks(deskList);
 }
 
 /* Sample Desk Storage
