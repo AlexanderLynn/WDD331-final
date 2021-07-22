@@ -1,0 +1,26 @@
+.nav-bar {
+    background-color: $color1;
+    border-radius: 5px;
+}
+
+.nav-list {
+    display: flex;
+    flex-flow: row;
+    padding: 1rem;
+    font-size: 1.5rem;
+    & li {
+        color: white;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    & :nth-child(2) {
+        font-size: 2rem;
+    }
+    & :nth-child(1) a, :nth-child(3) a {
+        text-decoration: underline;
+        color: white;
+    }
+}
+.designer-menu > * {
+    margin: 1rem;
+}

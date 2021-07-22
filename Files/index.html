@@ -8,15 +8,39 @@
     <link rel="stylesheet" href="styles/css/styles.css">
 </head>
 <body>
-    <div class="desk-layout designing" id="deskContainer">
+    <div class="page-wrapper">
+        <nav class="nav-bar">
+            <ul class="nav-list">
+                <li><a href="#" id="deskManagement">Desk Management</a></li>
+                <li>Desk Reservation</li>
+                <li><a href="#" id="deskReservation">My Reservation</a></li>
+            </ul>
+        </nav>
+        <div class="desk-layout designing" id="deskContainer">
+            <img id="background">
+        </div>
+
+        <div id="designer-menu" class="designer-menu hidden">
+            <div class="toolbox">
+                <button id="add-desk">Add Desks</button>
+                <button id="get-desks">List Desks</button>
+                <button id="save-desks">Save Desks</button>
+                <button id="clear-storage">Clear Storage</button>
+            </div>
+
+            <div class="image-uploader">
+                <p><input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;"></p>
+                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+            </div>
+        </div>
+        <div id="reservation-menu" class="reservation-menu">
+
+        </div>
     </div>
-    <button id="add-desk">Add Desks</button>
-    <button id="get-desks">List Desks</button>
-    <button id="save-desks">Save Desks</button>
-    <button id="clear-storage">Clear Storage</button>
 </body>
 <script type="module" src="javascript/designer/designer-controller.js"></script>
 <script src="javascript/reservation/reservation.js"></script>
+<script src="javascript/utilities/drag-and-drop.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <!-- <script type="module" src="javascript/utilities/draggable.js"></script> -->

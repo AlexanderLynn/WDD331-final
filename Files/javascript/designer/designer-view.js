@@ -5,6 +5,7 @@ export function drawDesks(deskList) {
     for (let i = 1; i < deskList.length + 1; i++) {
         drawDesk(deskList, i);
     }
+    //getPhoto();
 }
 
 function drawDesk(deskList, i) {
@@ -30,6 +31,27 @@ function clearView() {
     while (container.lastChild) {
         container.removeChild(container.lastChild);
     }
+}
+
+export function toggleManagement() {
+    let password = "admin";
+    if (document.getElementById("designer-menu").classList.contains("hidden")){
+        let passChecker = prompt("Please enter the admin password (default = admin)");
+        if (passChecker == password)
+            document.getElementById("designer-menu").classList.toggle("hidden");
+        else {}
+    }
+    else
+        document.getElementById("designer-menu").classList.toggle("hidden");
+
+}
+
+
+//broken
+function getPhoto() {
+    let image = document.getElementById('output');
+	image.src = URL.createObjectURL(document.getElementById("file").files[0]);
+    document.getElementById("deskContainer").appendChild(image);
 }
 
 /*
