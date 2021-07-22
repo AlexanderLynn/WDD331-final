@@ -1,8 +1,10 @@
 //Desk object
 export default class Desk {
-    constructor(deskNumber, position = [0,0]) {
+    constructor(deskNumber, position = [0,0], reserved = 0, reservationName = "") {
         this.deskNumber = deskNumber;
         this.position = position;
+        this.reserved = reserved;
+        this.reservationName = reservationName;
     }
     getDeskNumber() {
         return this.deskNumber;
@@ -71,12 +73,19 @@ export function saveDeskPosition(deskList) {
     storeDesks(storedDesks);
 }
 
-//Testing
 export function clearStorage() {
     let halfWidth = document.getElementById("deskContainer").clientWidth / 2;
     let halfHeight = document.getElementById("deskContainer").clientHeight / 2;
-    let blank = [{"deskNumber":1,"position":[halfWidth,halfHeight]}];
+    let blank = [{"deskNumber":1,"position":[halfWidth,halfHeight],"reserved":0,"reservationName":""}];
     localStorage.setItem("desks", JSON.stringify(blank));
+}
+
+export function reserveDesk() {
+    
+}
+//Testing
+export function test() {
+    console.log(document.activeElement.id);
 }
 
 /* Sample Desk Storage

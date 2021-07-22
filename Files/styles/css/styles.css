@@ -57,6 +57,10 @@ h1, h2, h3, h4, h5, li {
   font-family: "Halant", serif;
 }
 
+h2 {
+  font-size: x-large;
+}
+
 p, a, label, input, button {
   font-family: "Nunito Sans", sans-serif;
 }
@@ -99,7 +103,7 @@ p, a, label, input, button {
       -ms-user-select: none;
           user-select: none;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   position: absolute;
 }
 
@@ -121,7 +125,7 @@ p, a, label, input, button {
 }
 
 .desk:target {
-  background-color: #1BB28C;
+  background-color: #FED48B;
 }
 
 .toolbox {
@@ -144,8 +148,58 @@ p, a, label, input, button {
   font-size: 2rem;
 }
 
+.reservation-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row;
+          flex-flow: row;
+}
+
+.reservation-menu div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  padding: 1rem;
+  background-color: #9BC7C5;
+  border-radius: 5px;
+  text-justify: center;
+}
+
+.reservation-menu div > * {
+  margin: .5rem;
+}
+
+.reservation-menu div label {
+  color: white;
+}
+
+.reservation-menu div > h2 {
+  color: white;
+  text-align: center;
+}
+
+.reservation-menu div > ul li {
+  color: white;
+  margin-bottom: .5rem;
+}
+
 .hidden {
   display: none;
+}
+
+.reserved {
+  background-color: #E86E58;
+}
+
+.available {
+  background-color: #1BB28C;
 }
 
 .page-wrapper {

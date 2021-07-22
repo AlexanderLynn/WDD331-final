@@ -5,6 +5,8 @@ export function drawDesks(deskList) {
     for (let i = 1; i < deskList.length + 1; i++) {
         drawDesk(deskList, i);
     }
+    if (!document.getElementById("reservation-menu").classList.contains("hidden"))
+        displayReservation(deskList)
     //getPhoto();
 }
 
@@ -20,8 +22,14 @@ function drawDesk(deskList, i) {
     div.style.zIndex = 10 + i;
     div.style.left = deskList[i-1].position[0];
     div.style.top = deskList[i-1].position[1];
+    //sets reservation color
+    if(deskList[i-1].reserved == 1)
+        div.classList.add("reserved");
+    else
+        div.classList.add("available");
     //makeDraggable(div);
     //makes item draggable with JQuery
+    console.log("making draggable");
     if(document.getElementById("deskContainer").classList.contains("designing"))
         $(".desk").draggable({containment: "parent"});
 }
@@ -35,16 +43,45 @@ function clearView() {
 
 export function toggleManagement() {
     let password = "admin";
-    if (document.getElementById("designer-menu").classList.contains("hidden")){
+    if (document.getElementById("designer-menu").classList.contains("hidden") && !document.getElementById("reservation-menu").classList.contains("hidden")){
         let passChecker = prompt("Please enter the admin password (default = admin)");
-        if (passChecker == password)
+        if (passChecker == password) {
             document.getElementById("designer-menu").classList.toggle("hidden");
+            document.getElementById("reservation-menu").classList.toggle("hidden");
+        }
         else {}
     }
-    else
-        document.getElementById("designer-menu").classList.toggle("hidden");
-
+    else {}
+    document.getElementById("deskContainer").classList.add("designing");
 }
+
+export function toggleReservation(deskList) {
+    if (!document.getElementById("designer-menu").classList.contains("hidden")){
+        document.getElementById("reservation-menu").classList.toggle("hidden");
+        document.getElementById("designer-menu").classList.toggle("hidden");
+    }
+    if(document.getElementById("deskContainer").classList.contains("designing"))
+        document.getElementById("deskContainer").classList.toggle("designing");
+    
+    document.getElementById("deskContainer").classList.remove("designing");
+    console.log("removed designing");
+
+    displayReservation(deskList);
+}
+
+function displayReservation(deskList) {
+    let listUl = document.getElementById("reservedDesksList");
+    for (let i = 0; i <deskList.length; i++) {
+        let li = document.createElement("li");
+        li.innerHTML = "Desk" + deskList[i].deskNumber + ": " + deskList[i].reservationName;
+        listUl.appendChild(li);
+    }
+}
+
+
+
+
+
 
 
 //broken
